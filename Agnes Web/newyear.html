@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Agnes Chang</title>
+    <meta name="description" content="Effect inspiration for opening an image grid item." />
+    <meta name="keywords" content="image grid, effect, inspiration, css, javascript, animation, masonry" />
+    <meta name="author" content="Codrops" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.3.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/demo.css" />
+    <link rel="stylesheet" type="text/css" href="css/style2.css" />
+    <script src="js/modernizr-custom.js"></script>
+</head>
+
+<body class="demo-2">
+    <div class="container">
+        <header class="codrops-header">
+            <div class="codrops-links">
+                <a href="# title=" Previous Demo "> <i class="fa fa-circle " aria-hidden="true "> </i></a>
+                <a href="# title=" Previous Demo "> <i class="fa fa-circle-o" aria-hidden="true"> </i></a>
+                </a>
+            </div>
+            <h1><a href="index.html"> Agnes Chang <span>三款 app demo 與兩款上架作品</span></a></h1>
+            <div>
+                <h3>新年賀卡</h3>
+            </div>
+            <nav class="codrops-demos ">
+                <a href="Nonsence-camera.html">廢話相機</a>
+                <a href="Wallpaper-memo.html ">Wallpaper memo</a>
+                <a href="foodme.html">f##dme</a>
+                <a href="groupkab.html ">groupkab</a>
+                <a href="iaunty.html ">愛月嫂</a>
+                <br>
+                <br>
+                <a href="newyear.html" style="color: #ffffff;">新年賀卡</a>
+                <a href="photography.html">攝影集</a>
+                <a href="line.html">LINE 貼圖</a>
+            </nav>
+        </header>
+        <div class="content ">
+            <div class="grid ">
+                <div class="grid__item " data-size="865x1280 ">
+                    <a href="img/2017new-year/2017c.png" class="img-wrap "><img src="img/2017new-year/2017c.png" alt="img09 " />
+                        <div class="description description--grid ">
+                            <h3>2017</h3>
+                            <p>新年快樂
+                                <em>&mdash; Agnes Chang</em></p>
+                            <div class="details ">
+                                <ul>
+                                    <li># <span>sketch</span></li>
+                                    <li># <span>illustrator</span></li>
+                                    <li># <span>Taiwan</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="grid__item " data-size="865x1280 ">
+                    <a href="img/2017new-year/2017b.png" class="img-wrap "><img src="img/2017new-year/2017b.png" alt="img09 " />
+                        <div class="description description--grid ">
+                            <h3>2017</h3>
+                            <p>新年快樂
+                                <em>&mdash; Agnes Chang</em></p>
+                            <div class="details ">
+                                <ul>
+                                    <li># <span>sketch</span></li>
+                                    <li># <span>illustrator</span></li>
+                                    <li># <span>Taiwan</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- /grid -->
+            <div class="preview ">
+                <button class="action action--close "><i class="fa fa-times "></i><span class="text-hidden ">Close</span></button>
+                <div class="description description--preview "></div>
+            </div>
+            <!-- /preview -->
+        </div>
+        <!-- /content -->
+        <!-- Related demos -->
+        <section class="content content--related">
+            <p>yuyu17er@gmail.com</p>
+            <p>0918-065-806</p>
+        </section>
+    </div>
+    <!-- /container -->
+    <script src="js/imagesloaded.pkgd.min.js "></script>
+    <script src="js/masonry.pkgd.min.js "></script>
+    <script src="js/classie.js "></script>
+    <script src="js/main.js "></script>
+    <script>
+    (function() {
+        var support = {
+                transitions: Modernizr.csstransitions
+            },
+            // transition end event name
+            transEndEventNames = {
+                'WebkitTransition': 'webkitTransitionEnd',
+                'MozTransition': 'transitionend',
+                'OTransition': 'oTransitionEnd',
+                'msTransition': 'MSTransitionEnd',
+                'transition': 'transitionend'
+            },
+            transEndEventName = transEndEventNames[Modernizr.prefixed('transition')],
+            onEndTransition = function(el, callback) {
+                var onEndCallbackFn = function(ev) {
+                    if (support.transitions) {
+                        if (ev.target != this) return;
+                        this.removeEventListener(transEndEventName, onEndCallbackFn);
+                    }
+                    if (callback && typeof callback === 'function') {
+                        callback.call(this);
+                    }
+                };
+                if (support.transitions) {
+                    el.addEventListener(transEndEventName, onEndCallbackFn);
+                } else {
+                    onEndCallbackFn();
+                }
+            };
+
+        new GridFx(document.querySelector('.grid'), {
+            imgPosition: {
+                x: -0.5,
+                y: 1
+            },
+            onOpenItem: function(instance, item) {
+                instance.items.forEach(function(el) {
+                    if (item != el) {
+                        var delay = Math.floor(Math.random() * 50);
+                        el.style.WebkitTransition = 'opacity .5s ' + delay + 'ms cubic-bezier(.7,0,.3,1), -webkit-transform .5s ' + delay + 'ms cubic-bezier(.7,0,.3,1)';
+                        el.style.transition = 'opacity .5s ' + delay + 'ms cubic-bezier(.7,0,.3,1), transform .5s ' + delay + 'ms cubic-bezier(.7,0,.3,1)';
+                        el.style.WebkitTransform = 'scale3d(0.1,0.1,1)';
+                        el.style.transform = 'scale3d(0.1,0.1,1)';
+                        el.style.opacity = 0;
+                    }
+                });
+            },
+            onCloseItem: function(instance, item) {
+                instance.items.forEach(function(el) {
+                    if (item != el) {
+                        el.style.WebkitTransition = 'opacity .4s, -webkit-transform .4s';
+                        el.style.transition = 'opacity .4s, transform .4s';
+                        el.style.WebkitTransform = 'scale3d(1,1,1)';
+                        el.style.transform = 'scale3d(1,1,1)';
+                        el.style.opacity = 1;
+
+                        onEndTransition(el, function() {
+                            el.style.transition = 'none';
+                            el.style.WebkitTransform = 'none';
+                        });
+                    }
+                });
+            }
+        });
+    })();
+    </script>
+</body>
+
+</html>
